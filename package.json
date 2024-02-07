@@ -1,0 +1,27 @@
+{
+  "name": "jeni-map",
+  "version": "0.1.0",
+  "description": "Map of JENI scores for LA County zipcodes",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "author": "matthew skomarovsky",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "open": "^10.0.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}
