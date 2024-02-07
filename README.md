@@ -4,6 +4,8 @@ An interactive map of Justice Equity Need Index (JENI) scores by zipcode in Los 
 
 [JENI](https://www.catalystcalifornia.org/campaign-tools/maps-and-data/justice-equity-need-index) was developed by members of the Justice Equity Alliance to provide a rigorous, data-driven model for mapping inequities in the justice system in LA. The soure data is available [here](https://egis-lacounty.hub.arcgis.com/datasets/lacounty::la-county-boundary-feature-layer/about).
 
+![screenshot of jeni-map](https://github.com/lovemedicine/jeni-map/blob/main/assets/jeni-map-screenshot.jpg)
+
 ### Instructions
 
 You can install this project locally if you have [Node.js](https://nodejs.org) installed and a [Mapbox access token](https://docs.mapbox.com/help/getting-started/access-tokens/).
