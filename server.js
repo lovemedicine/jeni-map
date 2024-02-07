@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import open from "open";
 
-const port = 3000;
+const port = process.env.JENI_MAP_PORT || "3000";
 
 http
   .createServer((request, response) => {
