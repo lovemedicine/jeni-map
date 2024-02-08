@@ -16,11 +16,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "open": "^10.0.3"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "jest": {
     "testEnvironment": "jsdom"
   }
