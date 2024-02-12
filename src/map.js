@@ -1,17 +1,15 @@
-import jeniData from "./data/jeniData.geojson" assert { type: "json" };
-import laCountyData from "./data/laCountyData.geojson" assert { type: "json" };
+import jeniData from "./data/jeniData.js";
+import laCountyData from "./data/laCountyData.js";
 import { showFeature } from "./info.js";
 import { OPACITY, getMapboxExpression } from "./choropleth.js";
 import { mapboxAccessToken } from "./config.js";
 
 const dataKeys = ["jenipctl", "riskpctl", "driverspctl", "systempctl"];
-const featureCount = jeniData.features.length;
 
 export async function buildMap({ optionsId }) {
   const map = await createMap();
   addCountyLayer(map, laCountyData);
   addJeniLayers(map, jeniData);
-  showFeatureFromUrl(map);
 
   document.getElementById(optionsId).addEventListener("change", (event) => {
     const key = event.target.value;
@@ -68,11 +66,11 @@ function addJeniLayers(map, jeniData) {
   });
 
   for (let key of dataKeys) {
-    addJeniLayer(map, key, key === dataKeys[0]);
+    addJeniLayer(map, jeniData, key, key === dataKeys[0]);
   }
 }
 
-function addJeniLayer(map, dataKey, visible) {
+function addJeniLayer(map, jeniData, dataKey, visible) {
   const layerId = `${dataKey}-features`;
 
   map.addLayer({
@@ -128,7 +126,7 @@ function addJeniLayer(map, dataKey, visible) {
   map.on("click", layerId, (event) => {
     if (event.features.length) {
       const feature = event.features[0];
-      showFeature(feature, featureCount);
+      showFeature(feature, jeniData.features.length);
       highlightFeature(map, feature);
     }
   });
