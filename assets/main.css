@@ -5,16 +5,6 @@ body {
   font-family: monospace;
 }
 
-#main {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 390px auto;
-}
-
-#map {
-  height: 100%;
-}
-
 #options {
   background-color: white;
   position: absolute;
