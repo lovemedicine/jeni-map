@@ -1,3 +1,4 @@
+import mapboxgl from "mapbox-gl";
 import jeniData from "./data/jeniData.js";
 import laCountyData from "./data/laCountyData.js";
 import { showFeature } from "./info.js";
@@ -6,8 +7,8 @@ import { mapboxAccessToken } from "./config.js";
 
 const dataKeys = ["jenipctl", "riskpctl", "driverspctl", "systempctl"];
 
-export async function buildMap({ optionsId }) {
-  const map = await createMap();
+export async function buildMap({ containerId, optionsId }) {
+  const map = await createMap(containerId);
   addCountyLayer(map, laCountyData);
   addJeniLayers(map, jeniData);
 
@@ -17,12 +18,12 @@ export async function buildMap({ optionsId }) {
   });
 }
 
-async function createMap() {
+async function createMap(containerId) {
   return new Promise((resolve, reject) => {
     try {
       mapboxgl.accessToken = mapboxAccessToken;
       const map = new mapboxgl.Map({
-        container: "map",
+        container: containerId,
         center: [-118.21, 34.2],
         zoom: 8.5,
         style: "mapbox://styles/mapbox/light-v11",

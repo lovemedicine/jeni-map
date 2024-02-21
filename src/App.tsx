@@ -1,6 +1,13 @@
+import { useEffect } from "react";
+import Map from "@/components/Map";
 import Options from "@/components/Options";
+import { showIntro } from "./info";
 
 export default function App() {
+  useEffect(() => {
+    showIntro();
+  }, []);
+
   return (
     <>
       <div
@@ -12,7 +19,7 @@ export default function App() {
         }}
       >
         <div id="info"></div>
-        <div id="map" style={{ height: "100%" }}></div>
+        <Map />
       </div>
       <Options />
     </>
