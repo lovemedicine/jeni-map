@@ -1,21 +1,20 @@
 import mapboxgl from "mapbox-gl";
-import jeniData from "./data/jeniData.js";
-import laCountyData from "./data/laCountyData.js";
-import { showFeature } from "./info.js";
 import { OPACITY, getMapboxExpression } from "./choropleth.js";
 import { mapboxAccessToken } from "./config.js";
 
 const dataKeys = ["jenipctl", "riskpctl", "driverspctl", "systempctl"];
 
-export async function buildMap({ containerId, optionsId }) {
+export async function buildMap({
+  jeniData,
+  laCountyData,
+  containerId,
+  optionsId,
+  showFeature,
+}) {
   const map = await createMap(containerId);
   addCountyLayer(map, laCountyData);
-  addJeniLayers(map, jeniData);
-
-  document.getElementById(optionsId).addEventListener("change", (event) => {
-    const key = event.target.value;
-    showJeniLayer(map, key);
-  });
+  addJeniLayers(map, jeniData, showFeature);
+  return map;
 }
 
 async function createMap(containerId) {
@@ -60,18 +59,18 @@ function addCountyLayer(map, laCountyData) {
   });
 }
 
-function addJeniLayers(map, jeniData) {
+function addJeniLayers(map, jeniData, showFeature) {
   map.addSource("jeni-features", {
     type: "geojson",
     data: jeniData,
   });
 
   for (let key of dataKeys) {
-    addJeniLayer(map, jeniData, key, key === dataKeys[0]);
+    addJeniLayer(map, key, key === dataKeys[0], showFeature);
   }
 }
 
-function addJeniLayer(map, jeniData, dataKey, visible) {
+function addJeniLayer(map, dataKey, visible, showFeature) {
   const layerId = `${dataKey}-features`;
 
   map.addLayer({
@@ -127,13 +126,13 @@ function addJeniLayer(map, jeniData, dataKey, visible) {
   map.on("click", layerId, (event) => {
     if (event.features.length) {
       const feature = event.features[0];
-      showFeature(feature, jeniData.features.length);
+      showFeature(feature);
       highlightFeature(map, feature);
     }
   });
 }
 
-function showJeniLayer(map, key) {
+export function showJeniLayer(map, key) {
   dataKeys.forEach((dataKey) => {
     const visibility = dataKey === key ? "visible" : "none";
     map.setLayoutProperty(`${dataKey}-features`, "visibility", visibility);

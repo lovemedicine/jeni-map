@@ -1,12 +1,18 @@
-import { useEffect } from "react";
-import Map from "@/components/Map";
-import Options from "@/components/Options";
-import { showIntro } from "./info";
+import { useState } from "react";
+import Info from "@/components/Info.tsx";
+import Map from "@/components/Map.tsx";
+import Options from "@/components/Options.tsx";
+import jeniData from "./data/jeniData.js";
+import laCountyData from "./data/laCountyData.js";
+import { Feature } from "@/components/Feature";
 
 export default function App() {
-  useEffect(() => {
-    showIntro();
-  }, []);
+  const [feature, setFeature] = useState<Feature | null>(null);
+  const [dataKey, setDataKey] = useState<string>("jeni");
+
+  function showIntro(): void {
+    setFeature(null);
+  }
 
   return (
     <>
@@ -18,10 +24,19 @@ export default function App() {
           gridTemplateColumns: "390px auto",
         }}
       >
-        <div id="info"></div>
-        <Map />
+        <Info
+          feature={feature}
+          count={jeniData.features.length}
+          showIntro={showIntro}
+        />
+        <Map
+          jeniData={jeniData}
+          laCountyData={laCountyData}
+          showFeature={setFeature}
+          dataKey={dataKey}
+        />
       </div>
-      <Options />
+      <Options onChange={setDataKey} />
     </>
   );
 }

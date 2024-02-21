@@ -1,9 +1,22 @@
-export default function Options() {
+type OptionsProps = {
+  onChange: (value: string) => void;
+};
+
+export default function Options({ onChange }: OptionsProps) {
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    onChange(event.target.value);
+  }
+
   return (
     <div id="options">
       <strong>Map Data:</strong>
       <br />
-      <select id="data-selector" name="data-selector" defaultValue="jenipctl">
+      <select
+        id="data-selector"
+        name="data-selector"
+        defaultValue="jenipctl"
+        onChange={handleChange}
+      >
         <option value="jenipctl">JENI (Total)</option>
         <option value="systempctl">System Involvement</option>
         <option value="driverspctl">Inequity Drivers</option>
