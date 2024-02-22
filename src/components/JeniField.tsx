@@ -1,4 +1,4 @@
-import { getRgbaFromPercentile } from "@/choropleth.js";
+import { getRgbaFromPercentile } from "@/util/choropleth";
 
 export type JeniFieldProps = {
   name: string;

@@ -11,12 +11,7 @@ export default function Options({ onChange }: OptionsProps) {
     <div id="options">
       <strong>Map Data:</strong>
       <br />
-      <select
-        id="data-selector"
-        name="data-selector"
-        defaultValue="jenipctl"
-        onChange={handleChange}
-      >
+      <select defaultValue="jenipctl" onChange={handleChange}>
         <option value="jenipctl">JENI (Total)</option>
         <option value="systempctl">System Involvement</option>
         <option value="driverspctl">Inequity Drivers</option>

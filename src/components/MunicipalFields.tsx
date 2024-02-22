@@ -1,5 +1,5 @@
 import InfoField from "./InfoField";
-import { Feature } from "./Feature";
+import { Feature } from "@/util/types";
 
 const municipalFieldNames = {
   neighborhood: "Neighborhood",
@@ -10,6 +10,10 @@ const municipalFieldNames = {
 
 export default function MunicipalFields({ feature }: { feature: Feature }) {
   const { properties } = feature;
+
+  if (!properties) {
+    return null;
+  }
 
   const fieldProps = Object.entries(municipalFieldNames).map(
     ([field, name]) => {

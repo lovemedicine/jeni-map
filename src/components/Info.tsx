@@ -3,15 +3,14 @@ import Intro from "@/components/Intro.tsx";
 
 type InfoProps = {
   feature: any;
-  count: number;
   showIntro: () => void;
 };
 
-export default function Info({ feature, count, showIntro }: InfoProps) {
+export default function Info({ feature, showIntro }: InfoProps) {
   return (
     <div id="info">
       {feature ? (
-        <Feature feature={feature} count={count} showIntro={showIntro} />
+        <Feature feature={feature} showIntro={showIntro} />
       ) : (
         <Intro />
       )}

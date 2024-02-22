@@ -1,5 +1,5 @@
 import JeniField, { JeniFieldProps } from "./JeniField";
-import { Feature } from "./Feature";
+import { Feature } from "@/util/types";
 
 const jeniFieldNames = {
   jeni: "JENI Percentile",
@@ -11,10 +11,12 @@ const jeniFieldNames = {
 export default function JeniFields({ feature }: { feature: Feature }) {
   const { properties } = feature;
 
+  if (!properties) return null;
+
   const fieldProps = Object.entries(jeniFieldNames).map(
     ([field, name]): JeniFieldProps => {
-      const scoreKey = (field + "pctl") as keyof Feature["properties"];
-      const catKey = (field + "category") as keyof Feature["properties"];
+      const scoreKey = field + "pctl";
+      const catKey = field + "category";
       const score = roundScore(properties[scoreKey] as number);
       const category = properties[catKey] as string;
       return { name, score, category };

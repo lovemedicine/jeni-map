@@ -15,6 +15,7 @@
   "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",
+    "@types/mapbox-gl": "^2.7.21",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
@@ -36,6 +37,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "mapbox-gl": "^3.1.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-map-gl": "^7.1.7"
   }
 }
