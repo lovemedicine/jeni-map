@@ -2,10 +2,10 @@ import { useState } from "react";
 import Info from "@/components/Info";
 import MapContainer from "@/components/MapContainer";
 import Options from "@/components/Options";
-import { Feature } from "@/util/types";
+import { JeniFeature } from "@/util/types";
 
 export default function App() {
-  const [feature, setFeature] = useState<Feature | null>(null);
+  const [feature, setFeature] = useState<JeniFeature | null>(null);
   const [dataKey, setDataKey] = useState<string>("jenipctl");
 
   function showIntro(): void {

@@ -1,5 +1,9 @@
-import { FeatureCollection, MultiPolygon, GeoJsonProperties } from "geojson";
-export type { Feature } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  MultiPolygon,
+  GeoJsonProperties,
+} from "geojson";
 
 export type JeniProperties = {
   zip: string;
@@ -18,5 +22,6 @@ export type JeniProperties = {
 };
 
 export type JeniData = FeatureCollection<MultiPolygon, JeniProperties>;
+export type JeniFeature = Feature<MultiPolygon, JeniProperties>;
 
 export type LaCountyData = FeatureCollection<MultiPolygon, GeoJsonProperties>;
