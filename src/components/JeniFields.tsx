@@ -5,11 +5,11 @@ function roundScore(score: number) {
   return Math.floor(score * 10) / 10;
 }
 
-export default function JeniFields({
-  properties,
-}: {
+type JeniFieldsProps = {
   properties: JeniProperties;
-}) {
+};
+
+export default function JeniFields({ properties }: JeniFieldsProps) {
   const jeniFieldNames = {
     jeni: "JENI Percentile",
     system: "System Involvement",

@@ -1,36 +1,28 @@
 import { useState } from "react";
-import Map, {
-  Source,
-  Layer,
-  Popup,
-  LngLatBoundsLike,
-  LngLat,
-} from "react-map-gl";
+import Map, { Source, Layer, LngLatBoundsLike, LngLat } from "react-map-gl";
+import FeaturePopup from "./FeaturePopup";
 import { mapboxAccessToken } from "@/config";
 import jeniData from "@/data/jeniData.json";
 import laCountyData from "@/data/laCountyData.json";
 import { OPACITY, getMapboxExpression } from "@/util/choropleth";
 import { JeniFeature, JeniData, LaCountyData } from "@/util/types";
 
-type MapContainerProps = {
+type Props = {
   showFeature: React.Dispatch<React.SetStateAction<JeniFeature | null>>;
   dataKey: string;
 };
 
 const dataKeys = ["jenipctl", "riskpctl", "driverspctl", "systempctl"];
 
-export default function MapContainer({
-  showFeature,
-  dataKey,
-}: MapContainerProps) {
+export default function MapContainer({ showFeature, dataKey }: Props) {
   const [highlightedFeature, setHighlightedFeature] =
     useState<JeniFeature | null>(null);
   const [popupFeature, setPopupFeature] = useState<JeniFeature | null>(null);
   const [popupLngLat, setPopupLngLat] = useState<LngLat | null>(null);
 
   const bounds = [
-    [-118.94470304698102, 34.82330415665878],
-    [-117.64638597948208, 33.70467437223894],
+    [-118.96470304698102, 34.84330415665878],
+    [-117.62638597948208, 33.68467437223894],
   ] as LngLatBoundsLike;
 
   function handleClick(event: mapboxgl.MapLayerMouseEvent) {
@@ -113,48 +105,12 @@ export default function MapContainer({
         />
       </Source>
       {popupFeature && popupLngLat && (
-        <PopupForFeature
+        <FeaturePopup
           lngLat={popupLngLat}
           dataKey={dataKey}
           feature={popupFeature}
         />
       )}
     </Map>
-  );
-}
-
-type PopForFeatureProps = {
-  lngLat: LngLat;
-  dataKey: string;
-  feature: JeniFeature;
-};
-
-function PopupForFeature({ lngLat, dataKey, feature }: PopForFeatureProps) {
-  const { lng, lat } = lngLat;
-  const fieldName = (
-    {
-      jenipctl: "JENI (Total)",
-      systempctl: "System Involvement",
-      driverspctl: "Inequity Drivers",
-      riskpctl: "Criminalization Risk",
-    } as any
-  )[dataKey];
-  const { [dataKey]: score, zip, neighborhood } = feature.properties;
-  const roundedScore = Math.round((score as number) * 100) / 100;
-
-  return (
-    <Popup
-      longitude={lng}
-      latitude={lat}
-      closeButton={false}
-      closeOnClick={false}
-    >
-      <div>
-        <strong>{zip}</strong>
-      </div>
-      <div>{neighborhood}</div>
-      <div className="score">{roundedScore}</div>
-      <div>{fieldName}</div>
-    </Popup>
   );
 }
