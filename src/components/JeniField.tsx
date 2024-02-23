@@ -7,15 +7,19 @@ export type JeniFieldProps = {
 };
 
 export default function JeniField({ name, score, category }: JeniFieldProps) {
-  const color = getRgbaFromPercentile(score);
-  const style = { width: `${score}%`, backgroundColor: color };
   return (
     <>
-      <div className="info-field">
+      <div className="mt-3">
         <strong>{name}</strong>: {score} ({category})
       </div>
-      <div className="info-bar-container">
-        <div className="info-bar" style={style}></div>
+      <div className="box-border w-full h-5 border border-black mt-2px">
+        <div
+          className="h-full"
+          style={{
+            width: `${score}%`,
+            backgroundColor: getRgbaFromPercentile(score),
+          }}
+        ></div>
       </div>
     </>
   );

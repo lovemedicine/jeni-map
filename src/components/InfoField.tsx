@@ -5,7 +5,7 @@ type InfoFieldProps = {
 
 export default function InfoField({ name, value }: InfoFieldProps) {
   return (
-    <div className="info-field">
+    <div className="mt-3">
       <strong>{name}</strong>: {value}
     </div>
   );

@@ -1,7 +1,8 @@
 export default function Intro() {
   return (
-    <>
-      <h2>LA County JENI</h2>
+    <div className="text-sm">
+      <h1>LA County JENI</h1>
+      <p className="mb-5"></p>
       <p>
         The Justice Equity Need Index (JENI) identifies ZIP Codes in greatest
         need of public investments in community healing, health, and prevention
@@ -31,14 +32,14 @@ export default function Intro() {
           prevention-last approach.
         </li>
       </ul>
-      <div>
+      <p>
         <a
           href="https://www.catalystcalifornia.org/campaign-tools/maps-and-data/justice-equity-need-index"
           target="_blank"
         >
           More about JENI &raquo;
         </a>
-      </div>
-    </>
+      </p>
+    </div>
   );
 }

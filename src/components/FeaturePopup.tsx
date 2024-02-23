@@ -22,6 +22,7 @@ export default function FeaturePopup({ lngLat, dataKey, feature }: Props) {
 
   return (
     <Popup
+      className="font-mono text-sm w-48"
       longitude={lng}
       latitude={lat}
       closeButton={false}
@@ -31,7 +32,7 @@ export default function FeaturePopup({ lngLat, dataKey, feature }: Props) {
         <strong>{zip}</strong>
       </div>
       <div>{neighborhood}</div>
-      <div className="score">{roundedScore}</div>
+      <div className="text-4xl">{roundedScore}</div>
       <div>{fieldName}</div>
     </Popup>
   );

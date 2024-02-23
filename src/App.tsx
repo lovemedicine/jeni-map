@@ -14,14 +14,7 @@ export default function App() {
 
   return (
     <>
-      <div
-        id="main"
-        style={{
-          height: "100%",
-          display: "grid",
-          gridTemplateColumns: "390px auto",
-        }}
-      >
+      <div id="main" className="grid grid-cols-main h-screen relative">
         <Info feature={feature} showIntro={showIntro} />
         <MapContainer showFeature={setFeature} dataKey={dataKey} />
       </div>

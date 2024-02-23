@@ -8,7 +8,7 @@ type InfoProps = {
 
 export default function Info({ feature, showIntro }: InfoProps) {
   return (
-    <div id="info">
+    <div className="bg-white text-sm p-5 h-screen">
       {feature ? (
         <Feature feature={feature} showIntro={showIntro} />
       ) : (

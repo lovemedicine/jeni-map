@@ -50,7 +50,6 @@ export default function MapContainer({ showFeature, dataKey }: Props) {
       mapboxAccessToken={mapboxAccessToken}
       initialViewState={{ bounds }}
       mapStyle="mapbox://styles/mapbox/light-v11"
-      style={{ height: "100%" }}
       interactiveLayerIds={dataKeys.map((key) => `${key}-features`)}
       onClick={handleClick}
       onMouseMove={handleMouseMove}
@@ -86,24 +85,26 @@ export default function MapContainer({ showFeature, dataKey }: Props) {
           />
         ))}
       </Source>
-      <Source
-        id="highlighted-feature"
-        type="geojson"
-        data={highlightedFeature || undefined}
-      >
-        <Layer
-          id="jeni-feature-highlight"
-          type="line"
-          source="highlighted-feature"
-          paint={{
-            "line-color": "white",
-            "line-width": 3,
-          }}
-          layout={{
-            visibility: highlightedFeature ? "visible" : "none",
-          }}
-        />
-      </Source>
+      {highlightedFeature && (
+        <Source
+          id="highlighted-feature"
+          type="geojson"
+          data={highlightedFeature}
+        >
+          <Layer
+            id="jeni-feature-highlight"
+            type="line"
+            source="highlighted-feature"
+            paint={{
+              "line-color": "white",
+              "line-width": 3,
+            }}
+            layout={{
+              visibility: "visible",
+            }}
+          />
+        </Source>
+      )}
       {popupFeature && popupLngLat && (
         <FeaturePopup
           lngLat={popupLngLat}

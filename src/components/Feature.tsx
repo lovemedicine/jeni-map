@@ -17,16 +17,16 @@ export default function Feature({ feature, showIntro }: FeatureProps) {
 
   return (
     <>
-      <div>
-        <a style={{ cursor: "pointer" }} onClick={showIntro}>
-          &laquo; About JENI
-        </a>
-      </div>
       <h1>{properties.zip}</h1>
-      <div className="neighborhood">{properties.neighborhood}</div>
+      <div className="text-lg mb-5">{properties.neighborhood}</div>
       <InfoField name="JENI Rank" value={`${properties.jenirank} of 277`} />
       <JeniFields properties={properties} />
       <MunicipalFields properties={properties} />
+      <div className="bottom-4 absolute">
+        <a className="cursor-pointer" onClick={showIntro}>
+          &laquo; About JENI
+        </a>
+      </div>
     </>
   );
 }
