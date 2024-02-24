@@ -7,18 +7,27 @@ import { JeniFeature } from "@/util/types";
 export default function App() {
   const [feature, setFeature] = useState<JeniFeature | null>(null);
   const [dataKey, setDataKey] = useState<string>("jenipctl");
+  const [mapHasLoaded, setMapHasLoaded] = useState(false);
 
   function showIntro(): void {
     setFeature(null);
+  }
+
+  function handleMapLoad() {
+    setMapHasLoaded(true);
   }
 
   return (
     <>
       <div id="main" className="grid grid-cols-main h-screen relative">
         <Info feature={feature} showIntro={showIntro} />
-        <MapContainer showFeature={setFeature} dataKey={dataKey} />
+        <MapContainer
+          showFeature={setFeature}
+          dataKey={dataKey}
+          onLoad={handleMapLoad}
+        />
       </div>
-      <Options onChange={setDataKey} />
+      {mapHasLoaded && <Options onChange={setDataKey} />}
     </>
   );
 }

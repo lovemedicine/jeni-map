@@ -10,11 +10,12 @@ import { JeniFeature, JeniData, LaCountyData } from "@/util/types";
 type Props = {
   showFeature: React.Dispatch<React.SetStateAction<JeniFeature | null>>;
   dataKey: string;
+  onLoad: () => void;
 };
 
 const dataKeys = ["jenipctl", "riskpctl", "driverspctl", "systempctl"];
 
-export default function MapContainer({ showFeature, dataKey }: Props) {
+export default function MapContainer({ showFeature, dataKey, onLoad }: Props) {
   const [highlightedFeature, setHighlightedFeature] =
     useState<JeniFeature | null>(null);
   const [popupFeature, setPopupFeature] = useState<JeniFeature | null>(null);
@@ -54,6 +55,8 @@ export default function MapContainer({ showFeature, dataKey }: Props) {
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onLoad={onLoad}
+      testMode={(import.meta as any).env.MODE === "test"}
     >
       <Source
         id="la-county-feature"

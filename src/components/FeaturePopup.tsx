@@ -1,5 +1,6 @@
 import { Popup, LngLat } from "react-map-gl";
 import { JeniFeature } from "@/util/types";
+import { OPTIONS } from "@/util/constants";
 
 type Props = {
   lngLat: LngLat;
@@ -9,14 +10,7 @@ type Props = {
 
 export default function FeaturePopup({ lngLat, dataKey, feature }: Props) {
   const { lng, lat } = lngLat;
-  const fieldName = (
-    {
-      jenipctl: "JENI (Total)",
-      systempctl: "System Involvement",
-      driverspctl: "Inequity Drivers",
-      riskpctl: "Criminalization Risk",
-    } as any
-  )[dataKey];
+  const fieldName = OPTIONS[dataKey];
   const { [dataKey]: score, zip, neighborhood } = feature.properties;
   const roundedScore = Math.round((score as number) * 100) / 100;
 
