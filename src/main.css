@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    color: blue;
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin-top: 0.75rem;
+  }
+
+  li {
+    margin-top: 0.75rem;
+  }
+}
