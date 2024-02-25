@@ -30,30 +30,6 @@ Once the server has started, open a new shell and run the E2E tests:
 npm run e2e-test
 ```
 
-### Project structure
-
-The main dependencies are Node.js and [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/). Here are the project's main files:
-
-- `server.js` is a simple node script that serves the HTML, CSS, and JS files in this project
-
-- `index.html` is the entrypoint -- it includes the Mapbox GL JS and CSS files, `main.js` and `main.css` from this project, and the HTML skeleton
-
-- `main.css` contains all the styling for the map except for styles passed directly to the Mapbox API
-
-- `main.js` displays the intro text and builds the map
-
-- `map.js` is where all of the Mapbox data sources, layers, and interactivity is added
-
-- `info.js` controls rendering the intro and the zipcode views into the info section of the page
-
-- `choropleth.js` is responsible for mapping JENI scores onto the map's color spectrum
-
-- `config.js` is where the Mapbox access token is kept
-
-- `/data` contains the GEOJson files for JENI data and the LA County boundary
-
-- `/test` contains one very small file run by Jest and which tests very little
-
 ### TODO
 
 - bundle browser JS
